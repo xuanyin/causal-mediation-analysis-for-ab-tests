@@ -1,5 +1,5 @@
 # Causal Mediation Analysis for A/B Tests
-## Accepted and Oral Presented at KDD 2019, Acceptance Rate: 6.43%
+## Accepted and Oral Presented (6.43% selection rate) at KDD 2019
 
 ## Citation
 Xuan Yin and Liangjie Hong. 2019. The Identification and Estimation ofDirect and Indirect Effects in A/B Tests through Causal Mediation Analysis. In *The 25th ACM SIGKDD Conference on Knowledge Discovery and DataMining (KDD '19), August 4-8, 2019, Anchorage, AK, USA.* ACM, New York, NY, 11 pages. [https://doi.org/10.1145/3292500.3330769](https://doi.org/10.1145/3292500.3330769)
