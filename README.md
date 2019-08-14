@@ -4,7 +4,7 @@
 ## Citation
 Xuan Yin and Liangjie Hong. 2019. [The Identification and Estimation of Direct and Indirect Effects in A/B Tests through Causal Mediation Analysis](KDD2019_Yin_Hong_Causal_Mediation_Analysis_for_AB_Tests.pdf). In *The 25th ACM SIGKDD Conference on Knowledge Discovery and DataMining (KDD '19), August 4-8, 2019, Anchorage, AK, USA.* ACM, New York, NY, 11 pages. [https://doi.org/10.1145/3292500.3330769](https://doi.org/10.1145/3292500.3330769)
 
-## <ins>[The Accepted Version of the Paper](KDD2019_Yin_Hong_Causal_Mediation_Analysis_for_AB_Tests.pdf)</ins>
+## <ins>[The Accepted Version of the Paper](https://arxiv.org/abs/1906.09757)</ins>
 ## <ins>[Presentation Slides](KDD2019_short_version_Slides_paper_ads1688o_Causal_Mediation_Analysis.pdf)</ins>
 ## <ins>[Promotional Video on Youtube](https://youtu.be/coEpqU9HWWM)</ins>
 ## <ins>[Poster](KDD2019_Poster_paper_ads1688o_Causal_Mediation_Analysis.pdf)</ins>
