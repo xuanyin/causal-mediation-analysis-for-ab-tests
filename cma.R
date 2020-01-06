@@ -20,7 +20,7 @@ cma <- function(edata, outcome, treatment, mediator, result_path_file) {
   #############################################################################################################################
   des <- edata[, list(mean.outcome = mean(outcome)), by=treatment]
   mean.control = des[treatment==0, mean.outcome]
-  print(paste0("Mean of Control is ", mean.control))
+  cat(paste0(outcome, "Mean in Control Group is ", mean.control), "\n")
   rm(des)
   #############################################################################################################################
   gmm_mediation <- function(delta, d) {
@@ -193,30 +193,23 @@ cma <- function(edata, outcome, treatment, mediator, result_path_file) {
   set(mediation_result, i = 5L, j = "% Change", value = ttest["treatment", "Estimate"]/mean.control)
   
   ######################################################################################
-  cat("Mediation Results:")
+  cat(paste0("The outcome metric is ", outcome), "\n")
+  cat(paste0("The mediating metric is ", mediator), "\n")  
+  cat("Mediation Results:", "\n")
   print(mediation_result)
-  cat("Total Effects:")
-  print(mediation_result[1, Estimate] + mediation_result[4, Estimate])
-  cat("Total Effects:")
-  print(mediation_result[2, Estimate] + mediation_result[3, Estimate])
-  print(paste0("Convergence Code is ", convergence))
-  # convergence code: 0 means converge, 1 means not converge
-  print(paste0("Duration is ", duration))
   
-  mediation_result[,-1] <-round(mediation_result[,-1], 6) 
+  cat(paste0("Convergence Code is ", convergence), "\n")
+  if (convergence == 0) {
+    cat("The GMM algorithm converged", "\n")
+  } else if (convergence == 1) {
+    cat("The GMM algorithm did not converge", "\n")
+  }
+
+  cat(paste0("Duration is ", duration), "\n")
+  
+  for (j in 2:dim(mediation_result)[2]) set(mediation_result, j=j, value=round(mediation_result[[j]], 6))
 
   fwrite(mediation_result, result_path_file)
-  
-  ######################################################################################
-  # cat("First Stage Mediation Regression")
-  # print(coeftest(results_mediator, vcov = vcovHAC(results_mediator)))
-  # print(coeftest(results_mediator, vcov = sandwich))
-  # print(coeftest(results_mediator, vcov = vcovHC(results_mediator, type = "HC1")))
-  
-  # ######################################################################################
-  # cat("Second Stage Total Effects")
-  # print(coeftest(lm, vcov = sandwich))
-  # print(coeftest(lm, vcov = vcovHC(lm, type = "HC1")))
   
   return(mediation_result)
   #############################################################################################################################
