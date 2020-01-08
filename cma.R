@@ -18,6 +18,7 @@ cma <- function(edata, outcome, treatment, mediator, result_path_file) {
   
   setnames(edata, c("outcome", "treatment", "mediator"))
   #############################################################################################################################
+  ## Descriptive Stats
   des <- edata[, list(mean.outcome = mean(outcome)), by=treatment]
   mean.control = des[treatment==0, mean.outcome]
   cat(paste0(outcome, "Mean in Control Group is ", mean.control), "\n")
@@ -42,20 +43,20 @@ cma <- function(edata, outcome, treatment, mediator, result_path_file) {
     return(g)
   }
   
-  ######################################################################################################################
+  #############################################################################################################################
   results_mediator <- lm(mediator ~ treatment, data = edata)
   
   delta.m0.e = unname(results_mediator$coefficients['(Intercept)'])
   delta.m1.e = unname(results_mediator$coefficients['treatment'])
   
-  ####################################################################################
+  #############################################################################################################################
   results <- lm(outcome ~ treatment + mediator + treatment:mediator, data = edata)
   
   delta.y0.e = unname(results$coefficients['(Intercept)'])
   delta.y1.e = unname(results$coefficients['treatment'])
   delta.y2.e = unname(results$coefficients['mediator'])
   delta.y3.e = unname(results$coefficients['treatment:mediator'])
-  ######################################################################################################################
+  #############################################################################################################################
   
   edata <- edata[, constant:=1.000]
   
@@ -81,7 +82,7 @@ cma <- function(edata, outcome, treatment, mediator, result_path_file) {
   convergence = results$algoInfo$convergence
   
   print(summary(results))
-  ############################################################################################
+  #############################################################################################################################
   delta.m0.e = unname(results$coefficients['delta.m0'])
   delta.m1.e = unname(results$coefficients['delta.m1'])
   
@@ -89,8 +90,6 @@ cma <- function(edata, outcome, treatment, mediator, result_path_file) {
   delta.y1.e = unname(results$coefficients['delta.y1'])
   delta.y2.e = unname(results$coefficients['delta.y2'])
   delta.y3.e = unname(results$coefficients['delta.y3'])
-  
-  #####################
   
   var.m0 = results$vcov['delta.m0', 'delta.m0']
   var.m1 = results$vcov['delta.m1', 'delta.m1']
@@ -119,7 +118,7 @@ cma <- function(edata, outcome, treatment, mediator, result_path_file) {
   
   covar.y2.y3 = results$vcov['delta.y2', 'delta.y3']
   
-  ############################################################################################
+  #############################################################################################################################
   
   mediation_result <- data.table(matrix(double(), 5, 3))
   colnames(mediation_result) <- c("Effect",
@@ -133,14 +132,12 @@ cma <- function(edata, outcome, treatment, mediator, result_path_file) {
   set(mediation_result, i = 4L, j = "Effect", value =  "AME_treated")
   set(mediation_result, i = 5L, j = "Effect", value =  "Total Effect")
   
-  ####################
-  
   set(mediation_result, i = 1L, j = "Estimate", value = delta.y1.e + (delta.y3.e * (delta.m0.e + (delta.m1.e * 0))))
   set(mediation_result, i = 2L, j = "Estimate", value = delta.y1.e + (delta.y3.e * (delta.m0.e + (delta.m1.e * 1))))
   set(mediation_result, i = 3L, j = "Estimate", value = delta.m1.e * (delta.y2.e + (delta.y3.e * 0)))
   set(mediation_result, i = 4L, j = "Estimate", value = delta.m1.e * (delta.y2.e + (delta.y3.e * 1)))
   
-  ####################
+  #############################################################################################################################
   
   var.ame <- function(t) {
     return((((delta.y2.e + (delta.y3.e * t))^2) * var.m1)
@@ -171,17 +168,12 @@ cma <- function(edata, outcome, treatment, mediator, result_path_file) {
   set(mediation_result, i = 2L, j = "SE", value = sqrt(var.ade(1)))
   set(mediation_result, i = 3L, j = "SE", value = sqrt(var.ame(0)))
   set(mediation_result, i = 4L, j = "SE", value = sqrt(var.ame(1)))
-  
-  ####################
-  
-  mediation_result[, "Z_Score":= Estimate/SE]
-  # mediation_result[, "P_Value":= 2*pt(-abs(T_Stat), df= (results$n - 1))]
-  
+    
+  mediation_result[, "Z_Score":= Estimate/SE]  
   mediation_result[, "P_Value":= 2*pnorm(-abs(Z_Score))]
-  
   mediation_result[, "% Change":= Estimate/mean.control]
   
-  ####################
+  #############################################################################################################################
   
   lm <- lm(outcome ~ treatment, data = results$dat)
   ttest <- coeftest(lm, vcov = vcovHAC(lm))
@@ -192,7 +184,7 @@ cma <- function(edata, outcome, treatment, mediator, result_path_file) {
   set(mediation_result, i = 5L, j = "P_Value", value = ttest["treatment", "Pr(>|t|)"])
   set(mediation_result, i = 5L, j = "% Change", value = ttest["treatment", "Estimate"]/mean.control)
   
-  ######################################################################################
+  #############################################################################################################################
   cat(paste0("The outcome metric is ", outcome), "\n")
   cat(paste0("The mediating metric is ", mediator), "\n")  
   cat("Mediation Results:", "\n")
@@ -212,5 +204,4 @@ cma <- function(edata, outcome, treatment, mediator, result_path_file) {
   fwrite(mediation_result, result_path_file)
   
   return(mediation_result)
-  #############################################################################################################################
 }
