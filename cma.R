@@ -21,7 +21,7 @@ cma <- function(edata, outcome, treatment, mediator, result_path_file) {
   ## Descriptive Stats
   des <- edata[, list(mean.outcome = mean(outcome)), by=treatment]
   mean.control = des[treatment==0, mean.outcome]
-  cat(paste0(outcome, "Mean in Control Group is ", mean.control), "\n")
+  cat(paste0(outcome, " Mean in Control Group is ", mean.control), "\n")
   rm(des)
   #############################################################################################################################
   gmm_mediation <- function(delta, d) {
