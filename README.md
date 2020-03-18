@@ -5,6 +5,8 @@
 Xuan Yin and Liangjie Hong. 2019. [The Identification and Estimation of Direct and Indirect Effects in A/B Tests through Causal Mediation Analysis](https://www.kdd.org/kdd2019/accepted-papers/view/the-identification-and-estimation-of-direct-and-indirect-effects-in-online-). In *The 25th ACM SIGKDD Conference on Knowledge Discovery and Data Mining (KDD '19), August 4-8, 2019, Anchorage, AK, USA.* ACM, New York, NY, 11 pages. [https://doi.org/10.1145/3292500.3330769](https://doi.org/10.1145/3292500.3330769)
 
 ## <ins>[The Published Version of the Paper](https://www.kdd.org/kdd2019/accepted-papers/view/the-identification-and-estimation-of-direct-and-indirect-effects-in-online-)</ins>
+## <ins>[Code-as-Craft Post: The Causal Analysis of Cannibalization in Online Products](https://codeascraft.com/2020/02/24/the-causal-analysis-of-cannibalization-in-online-products/)
+## <ins>[LinkedIn Post: The Causal Analysis of Cannibalization in Online Products](https://www.linkedin.com/pulse/quantifying-business-impacts-cannibalization-ml-xuan-yin-ph-d-/)
 ## <ins>[Presentation Slides](KDD2019_short_version_Slides_paper_ads1688o_Causal_Mediation_Analysis.pdf)</ins>
 ## <ins>[Promotional Video on Youtube](https://youtu.be/coEpqU9HWWM)</ins>
 ## <ins>[Poster](KDD2019_Poster_paper_ads1688o_Causal_Mediation_Analysis.pdf)</ins>
