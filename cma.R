@@ -1,4 +1,4 @@
-cma <- function(edata, outcome, treatment, mediator, result_path_file) {
+cma <- function(edata, outcome, treatment, mediator) {
   
   # An R function that utilizes GMM to estimate causal mediation
   # The inputs are:
@@ -6,8 +6,7 @@ cma <- function(edata, outcome, treatment, mediator, result_path_file) {
   #   outcome: outcome metric of experimental unit
   #   treatment: treatment indicator of experimental unit
   #   mediator: mediator metric of experimental unit
-  #   result_path_file: e.g., "~/results/gbdt_desktop_conversion_cma.csv"
-  # The output is a CSV file of estimation results
+  #   tbd
 
   library(data.table)
   library(lmtest)
@@ -200,8 +199,6 @@ cma <- function(edata, outcome, treatment, mediator, result_path_file) {
   cat(paste0("Duration is ", duration), "\n")
   
   for (j in 2:dim(mediation_result)[2]) set(mediation_result, j=j, value=round(mediation_result[[j]], 6))
-
-  fwrite(mediation_result, result_path_file)
   
   return(mediation_result)
 }
