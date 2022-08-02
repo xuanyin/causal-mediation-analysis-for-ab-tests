@@ -7,7 +7,7 @@ Xuan Yin and Liangjie Hong. 2019. [The Identification and Estimation of Direct a
 ## <ins>[The Published Version of the Paper](https://www.kdd.org/kdd2019/accepted-papers/view/the-identification-and-estimation-of-direct-and-indirect-effects-in-online-)</ins>
 ## <ins>[Code-as-Craft Post: The Causal Analysis of Cannibalization in Online Products](https://codeascraft.com/2020/02/24/the-causal-analysis-of-cannibalization-in-online-products/)
 ## <ins>[LinkedIn Post: The Causal Analysis of Cannibalization in Online Products](https://www.linkedin.com/pulse/quantifying-business-impacts-cannibalization-ml-xuan-yin-ph-d-/)
-## <ins>[Presentation Slides](KDD2019_short_version_Slides_paper_ads1688o_Causal_Mediation_Analysis.pdf)</ins>
+## <ins>[Presentation Slides](short_version_slides_2022.pdf)</ins>
 ## <ins>[Promotional Video on Youtube](https://youtu.be/coEpqU9HWWM)</ins>
 ## <ins>[Poster](KDD2019_Poster_paper_ads1688o_Causal_Mediation_Analysis.pdf)</ins>
 
